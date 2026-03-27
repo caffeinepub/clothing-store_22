@@ -1,7 +1,7 @@
 import { ShoppingBag } from "lucide-react";
 import { motion } from "motion/react";
 
-interface Product {
+export interface Product {
   id: number;
   name: string;
   price: string;
@@ -104,17 +104,17 @@ const PRODUCTS: Product[] = [
 ];
 
 interface ProductsProps {
-  onAddToCart: () => void;
+  onSelectProduct: (product: Product) => void;
 }
 
 function ProductCard({
   product,
   index,
-  onAddToCart,
+  onSelectProduct,
 }: {
   product: Product;
   index: number;
-  onAddToCart: () => void;
+  onSelectProduct: (product: Product) => void;
 }) {
   return (
     <motion.article
@@ -123,7 +123,8 @@ function ProductCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay: (index % 4) * 0.1, ease: "easeOut" }}
-      className="group flex flex-col border border-border bg-card"
+      className="group flex cursor-pointer flex-col border border-border bg-card"
+      onClick={() => onSelectProduct(product)}
     >
       {/* Image */}
       <div className="relative overflow-hidden" style={{ aspectRatio: "6/7" }}>
@@ -137,6 +138,12 @@ function ProductCard({
         <span className="absolute top-3 left-3 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground">
           {product.category}
         </span>
+        {/* Hover overlay */}
+        <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+          <span className="border border-white px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
+            View Details
+          </span>
+        </div>
       </div>
 
       {/* Info */}
@@ -150,7 +157,10 @@ function ProductCard({
         <button
           type="button"
           data-ocid={`products.secondary_button.${index + 1}`}
-          onClick={onAddToCart}
+          onClick={(e) => {
+            e.stopPropagation();
+            onSelectProduct(product);
+          }}
           className="flex w-full items-center justify-center gap-2 border border-border bg-secondary py-2.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-foreground transition-all hover:border-foreground hover:bg-foreground hover:text-background"
         >
           <ShoppingBag size={13} />
@@ -161,7 +171,7 @@ function ProductCard({
   );
 }
 
-export default function Products({ onAddToCart }: ProductsProps) {
+export default function Products({ onSelectProduct }: ProductsProps) {
   return (
     <section id="products" className="bg-background px-6 py-24">
       <div className="mx-auto max-w-7xl">
@@ -189,7 +199,7 @@ export default function Products({ onAddToCart }: ProductsProps) {
               key={product.id}
               product={product}
               index={i}
-              onAddToCart={onAddToCart}
+              onSelectProduct={onSelectProduct}
             />
           ))}
         </div>
