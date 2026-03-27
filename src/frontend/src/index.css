@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.25rem;
+
+    /* Dark luxury fashion palette — always dark */
+    /* #0B0C0E near-black charcoal */
+    --background: 0.09 0.004 255;
+    /* #F2F2F2 off-white */
+    --foreground: 0.96 0 0;
+    /* #14161A deep card gray */
+    --card: 0.12 0.005 255;
+    --card-foreground: 0.96 0 0;
+    --popover: 0.15 0.005 255;
+    --popover-foreground: 0.96 0 0;
+    /* #F5F5F5 near-white primary button */
+    --primary: 0.97 0 0;
+    --primary-foreground: 0.09 0.004 255;
+    /* #1A1D21 secondary dark */
+    --secondary: 0.15 0.005 255;
+    --secondary-foreground: 0.96 0 0;
+    /* muted */
+    --muted: 0.18 0.005 255;
+    /* #B7BCC3 cool muted gray */
+    --muted-foreground: 0.77 0.007 250;
+    /* #6F8396 blue-gray accent */
+    --accent: 0.56 0.04 230;
+    --accent-foreground: 0.96 0 0;
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.96 0 0;
+    /* #2A2D31 subtle border */
+    --border: 0.22 0.006 250;
+    --input: 0.22 0.006 250;
+    --ring: 0.56 0.04 230;
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+    --sidebar: 0.12 0.005 255;
+    --sidebar-foreground: 0.96 0 0;
+    --sidebar-primary: 0.97 0 0;
+    --sidebar-primary-foreground: 0.09 0.004 255;
+    --sidebar-accent: 0.56 0.04 230;
+    --sidebar-accent-foreground: 0.96 0 0;
+    --sidebar-border: 0.22 0.006 250;
+    --sidebar-ring: 0.56 0.04 230;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "General Sans", sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer utilities {
+  .font-serif-display {
+    font-family: "Playfair Display", Georgia, serif;
+  }
+
+  .hero-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
